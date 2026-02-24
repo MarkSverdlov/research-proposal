@@ -1,0 +1,115 @@
+% !TEX program = xelatex
+\documentclass{amsart}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsthm, amsmath, amssymb, amsfonts} % general mathmode commands
+\usepackage{bm} % for \bm
+\usepackage{stmaryrd} % for \nnearrow
+\usepackage{cancel} % for \cancel
+\usepackage{breqn} % automatic line breaks in equations
+\usepackage[margin=2.5cm]{geometry} % for page layout
+\usepackage{cancel} % for \cancel
+\usepackage{algorithm2e} % for algorithms
+\usepackage{bbm} % for \mathbbm{1}
+\usepackage{mathtools} % for \coloneq
+\usepackage{hyperref}
+\usepackage{nicefrac}
+\usepackage{float}
+\usepackage{polyglossia}
+\usepackage{biblatex}
+\usepackage{lipsum}
+\usepackage{placeins}
+\usepackage{booktabs}
+\usepackage{xcolor,colortbl}
+\usepackage{makecell}
+\RestyleAlgo{ruled}
+
+% \new theorems definition
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[subsection]{Definition}
+
+\theoremstyle{definition}
+\newtheorem{example}[subsection]{Example}
+\newtheorem{conjecture}[subsection]{Conjecture}
+
+\theoremstyle{remark}
+\newtheorem{remark}[subsection]{Remark}
+
+\addbibresource{refs.bib}
+% \newcommand
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator{\err}{Err}
+\DeclareMathOperator{\softmax}{softmax}
+\newcommand{\diff}{\mathrm{d}}
+
+% Langauge settings
+\setdefaultlanguage{english}
+\setotherlanguage{hebrew}
+\newfontfamily\hebrewfont[Script=Hebrew]{Arial}
+\title{Research Proposal}
+\author{Mark Sverdlov}
+\date{December 2025}
+
+\begin{document}
+
+\input{title-page.tex}
+
+\section{Introduction}
+\subsection{Historical Background}
+Catastrophic events, like hurricanes or earthquakes, pose a unique risk profile for insurers and reinsurers, due to their tendency to affect whole industries and sectors in tandem. These risks were realized in 1992, when Hurricane Andrew struck Florida and the Gulf coast, inflicting 27\$ billion in damages, of which 15.5\$ billion was covered by insurance~\cite{chicago-history}. This event led to the failure of eight insurance companies, and pushed others to the brink of insolvency.
+This turn of events eventually culminated in the invention of the financial machinery of a CAT bond, which is a security that pays the issuer when a predefined disaster risk is realized. The first CAT bonds were issued in 1997, giving insurers access to broader financial markets, and offering institutional investors an opportunity to earn an attractive return on investment uncorrelated with the returns of other financial instruments.
+
+From 1997 to 2005, CAT bond issuance was steady, averaging 1.2\$ billions annualy, but CAT bonds gained popularity, as a means of diversifying risk after the insured losses from Katrina hurricane, culminating in 25.4\$ billions CAT bonds issued this year (2025).~\cite{artemis}. This puts CAT bonds as a valuable and interesting financail instrument, garners attention both from academics and practictioners.
+
+\subsection{Literature Background}
+As financial instruments, the main objective of research over CAT bonds and ILS is pricing them, i.e.\ creating a model that is able to caclualte a fair price of a bond given its conditions, the economic environment and past data. This objective is complicated by the existance of differently structurse bonds with different insured underlying risks. A model built to tackle pricing for relatively simple case is~\cite{zimbidis-et-al} where a model is built to price non-idemnity CAT bonds over
+the earthquakes in the broader area of Greece. The modeling is two in two stages, first a probability distrbuition of the maximal earthquake intensity in a time period is fitted over historical data using tools from Extreme Value Theory, then this distbruition is set in a classical formula to price a bond given an economic environment (risk free interest rate, etc). A more abstract approach is taken by Wang~\cite{wang}, as the basic premise is that the distrbuition of the
+underlying event (loss due to some disaster) is given, either as an output of some catastrophic modeling program (based on historical data) or an event-loss table stating the probability and financial loss of different events, and to price the bond, all we have to do is to deduce the risk-adjusted loss distrbuition by means of `porbability distbruition' to obtain the `price-curve'. Observing that most of the information about a loss distbuition is contained in the
+\texttt{attachement probability}, \texttt{expected loss}, and \texttt{exhaustion probability},~\cite{rom} develops a framework to approximate a los exceedence porbability curve using these three number, utilizing tools from extreme values theory. 
+
+
+
+
+% \subsection{Previous Works}
+
+% Cat bonds are investment instruments designed to defend issuers from catastrophic losses. --Meister-- discuss the pricing of such bonds, by considering the loss proceeses in probabilistic tools. --Lane-- empricially consider the pricing. --Wang-- notes that the loss distrbution is very skewed, neccesrizing different risk metrics, and --rom-- uses the basic exhaustion, attachment etc to fit a loss probability
+% In --roms-work--, 
+
+
+
+\section{A proposal of a problem}
+Our aim is to supplement the abstract line of thinking with theoretical gurantees about the loss distrbuition of a security given the attachement proabability, expected loss and exhaustion probability, justifying he common industry practices utilizing these three numbers. More concretely, we aim to bound different risk metrics given these three parameters: value at risk, expected shortfall, different spectral risk measures and Esscher's Principle. 
+
+Additionally, we would like to explore the effect of adding constraints to the problem, that allow us to better understand the space of possible loss distributions, like fixed quintiles.
+
+Finally, we might generalize the results to dynamic loss processes to include temporal effects in out analysis.
+
+\section{Preliminary Results}
+\subsection{Definitions}
+Our main object of study is a random variable \(L\) bounded in \(\left[0,\,1\right]\), denoting an abstract \texttt{Excess of Loss} layer within a reinsurance program. If \(L = 0\), then the layer wasn't triggered, if \(L = 1\) then the layer was fully exhausted, and \(0 < L < 1\) denotes the proportional payout out of the total layer. We also consider the loss exceedence probability function of \(L\), which we denote by \(S_{L}\), and for each \(t \in \left[0,\,1\right]\) is
+defined by \(S_{L}\left(t\right) = P \left(L > t\right)\). This ensures that \(S_{L}\) is a decreasing right continous function.
+
+By inspecting \(S_{L}\) we some sharp bounds over the raw moments of \(L\), given \(P \left(L > 0\right) = p\) and \(P \left(L = 1\right) = q\):
+
+\begin{equation*}
+    q + \frac{\left(\mathrm{E}L - q\right)^{n}}{\left(p-q\right)^{n-1}} \leq \mathrm{E}L^{n} \leq \mathrm{E}L
+\end{equation*}
+
+and for the moment generating function, we have:
+\begin{equation*}
+    1 + \left(e^{t}-1\right)\left(q + \frac{p-q}{e^{t}-1}\left(e^{tr}-1\right)\right) \leq \mathrm{E}e^{tL} \leq 1 + \left(e^{t}-1\right) \mathrm{E}L
+\end{equation*}
+where:
+\begin{equation*}
+    r = \frac{\mathrm{E}L - q}{p-q}
+\end{equation*}
+
+\printbibliography
+
+\end{document}
