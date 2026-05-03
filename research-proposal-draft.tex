@@ -70,23 +70,24 @@
 
 \section{Theoretical Background}
 \subsection{Historical Background}
-Catastrophic events, such as hurricanes or earthquakes, pose a unique risk profile for insurers and reinsurers due to their tendency to affect entire industries and sectors simultaneously. These risks were realized in 1992, when Hurricane Andrew struck Florida and the Gulf Coast, inflicting \$27 billion in damages, of which \$15.5 billion was covered by insurance~\cite{chicago-history}. This event led to the failure of eight insurance companies and pushed others to the brink of insolvency.
+Catastrophic events, such as hurricanes or earthquakes, pose a unique risk profile for insurers and reinsurers due to their tendency to affect entire industries and sectors simultaneously. These risks were realized in 1992, when Hurricane Andrew struck Florida and the Gulf Coast, inflicting \$27 billion in damages, of which \$15.5 billion was covered by insurance~\cite{TR:polacek-2018}. This event led to the failure of eight insurance companies and pushed others to the brink of insolvency.
 Indeed, losses of that scale are unsustainable for individual firms or hedge funds. This fact naturally leads to seeking solutions in the capital markets, which represent the economic power of the general public. 
 Hence, this turn of events eventually culminated in the development of catastrophe bonds (CAT bonds), which are securities that pay the issuer when a predefined disaster risk is realized. The first CAT bonds were issued in 1997, giving insurers access to broader financial markets and offering institutional investors an opportunity to earn attractive returns uncorrelated with other financial instruments.
 
-From 1997 to 2005, CAT bond issuance was steady, averaging \$1.2 billion annually, but CAT bonds gained popularity as a means of diversifying risk after the insured losses from Hurricane Katrina, culminating in \$25.4 billion in CAT bonds issued in 2025~\cite{artemis}. This positions CAT bonds as a valuable and interesting financial instrument, garnering attention from both academics and practitioners.
+From 1997 to 2005, CAT bond issuance was steady, averaging \$1.2 billion annually, but CAT bonds gained popularity as a means of diversifying risk after the insured losses from Hurricane Katrina, culminating in \$25.4 billion in CAT bonds issued in 2025~\cite{W:artemis-2025}. This positions CAT bonds as a valuable and interesting financial instrument, garnering attention from both academics and practitioners.
 
 \subsection{Literature Background}
 As financial instruments, the main objective of research on CAT bonds and the closely related class of insurance-linked securities (ILS) is risk pricing, i.e., constructing models that calculate the spread of the bond yield over the risk-free yield given its structure, the economic environment, and historical data. This objective is complicated by the existence of differently structured bonds with different underlying risks.
 
-A model built to tackle pricing in a relatively simple case is presented in~\cite{zimbidis-et-al}, where a framework is constructed to price non-indemnity CAT bonds for earthquakes in the broader area of Greece. The modeling is carried out in two stages: first, a probability distribution of the maximal earthquake intensity over a time period is fitted using tools from Extreme Value Theory; then, this distribution is used within a classical pricing formula given an economic environment (e.g., risk-free interest rate).
+A model built to tackle pricing in a relatively simple case is presented in~\cite{A:zimbidis-et-al-2007}, where a framework is constructed to price non-indemnity CAT bonds for earthquakes in the broader area of Greece. The modeling is carried out in two stages: first, a probability distribution of the maximal earthquake intensity over a time period is fitted using tools from Extreme Value Theory; then, this distribution is used within a classical pricing formula given an economic environment (e.g., risk-free interest rate).
 
-A more abstract approach is taken by Wang~\cite{wang}, where the distribution of the underlying loss is assumed to be given by physical considerations, either as output from catastrophe modeling software or as an event-loss table specifying probabilities and losses. Pricing is then achieved by transforming the probability measure to incorporate risk loading, resulting in a price curve.
+A more abstract approach is taken by~\cite{A:wang-2004}, where the distribution of the underlying loss is assumed to be given by physical considerations, either as output from catastrophe modeling software or as an event-loss table specifying probabilities and losses. Pricing is then achieved by transforming the probability measure to incorporate risk loading, resulting in a price curve.
 
-As an industry standard, due to commercial rationale, models used to estimate the risk of insured events are often kept secret or at least described only at a high level. Therefore, methods to estimate the loss distribution of the insured loss from publicly available information such as the \textit{attachment probability}, \textit{expected loss}, and \textit{exhaustion probability} are invaluable. In~\cite{rom}, the author develops a framework to approximate a loss exceedance probability curve
+As an industry standard, due to commercial rationale, models used to estimate the risk of insured events are often kept secret or at least described only at a high level. Therefore, methods to estimate the loss distribution of the insured loss from publicly available information such as the \textit{attachment probability}, \textit{expected loss}, and \textit{exhaustion probability} (to be defined in the next section) are invaluable. In~\cite{A:aviv-2018}, the author develops a framework to approximate a loss exceedance probability curve
 using these three quantities, employing tools from Extreme Value Theory.
 \subsection{Definitions}
-A reinsurance program is an arrangement consisting of a sequence of progressive reinsurance contracts, each specifying the interval of losses it covers. Each contract has an attachment point (the minimal loss required to trigger the contract) and an exhaustion point (the maximal loss covered), forming a metaphorical tower of increasingly extreme (and thus less risky) layers. Each contract is therefore called an \textit{excess of loss layer}, as it covers the excess loss remaining after previous layers~\cite{ils-guide}.
+A reinsurance program is an arrangement consisting of a sequence of progressive reinsurance contracts, each specifying the interval of losses it covers. Each contract has an attachment point (the minimal loss required to trigger the contract) and an exhaustion point (the maximal loss covered), forming a metaphorical tower of increasingly extreme (and thus less risky) layers. Each contract is therefore called an \textit{excess of loss layer}, as it covers the excess loss remaining after previous
+layers~\cite{W:gibson-2026}.
 
 For our analysis, the main object of study is an \textit{excess of loss} layer within a reinsurance program. We model it with a random variable \(L\) bounded in \(\left[0,1\right]\), defined over a probability space \(\left(\Omega, \mathcal{F}, P\right)\). The value \(L = 0\) represents no trigger, \(L = 1\) represents full exhaustion, and \(0 < L < 1\) denotes a proportional payout. We henceforth define a few terms to more easily present our proposed problem and preliminary results:
 
@@ -130,7 +131,7 @@ For our analysis, the main object of study is an \textit{excess of loss} layer w
     For all \(\alpha \in \left[0,\,1\right]\), \(\text{VaR}_{\alpha}L = q_{\alpha}\left(L\right)\). However, it is useful to separate these two definitions: in cases where we emphasize this value as a financial risk measure, we opt to use the symbol \(\text{VaR}_{\alpha}L\), while in cases where we emphasize this value as a property of the distribution of \(L\), we opt to use the symbol \(q_{\alpha}\left(L\right)\).
 \end{remark}
     Value at risk is the essential maximum loss if we allow some leeway \(\alpha\), so it naturally fits as a risk measure. However, it suffers from some undesirable properties; most notably, it is possible to have some loss distribution \(\phi\) such that if \(L_{1},\,L_{2} \sim \phi\) are i.i.d.\ loss variables, \(\text{VaR}_{\alpha}(2L_{1}) = 0\) and \(\text{VaR}_{\alpha} \left(L_{1} + L_{2}\right) = 0.5\), implying that splitting risk into two independent components increases risk, contrary
-    to financial common sense. This leads to the definition of coherent risk measures~\cite{coherent-risk-meausres}, whose chief example is expected shortfall~\cite{coherence-of-expected-shortfall}:
+    to financial common sense. This leads to the definition of coherent risk measures~\cite{A:artzner-et-al-1999}, whose chief example is expected shortfall~\cite{A:acerbi-and-tasche-2002}:
 
 \end{definition}
 \begin{definition}[Expected Shortfall]
@@ -140,7 +141,7 @@ For our analysis, the main object of study is an \textit{excess of loss} layer w
    \end{equation*}
 \end{definition}
 
-In~\cite{spectral-risk-measures}, the author notes that expected shortfall is merely a specific instantiation of a larger class of coherent risk measures that represent different allocations of risk profiles.
+In~\cite{A:acerbi-2002}, the author notes that expected shortfall is merely a specific instantiation of a larger class of coherent risk measures that represent different allocations of risk profiles.
 
 \begin{definition}[Spectral Risk Measure]
     Suppose \(\phi:\ \left[0,\,1\right] \rightarrow \mathbb{R}\) is a non-negative increasing function such that \(\int_{0}^{1} \phi = 1\). Then we define:
@@ -150,7 +151,7 @@ In~\cite{spectral-risk-measures}, the author notes that expected shortfall is me
 \end{definition}
 A spectral risk measure is a generalization of expected shortfall if we take \(\phi \left(u\right) = \frac{1}{1-\alpha}\mathbf{1}_{\left[\alpha,\,1\right]}\), but varying \(\phi\) allows us to consider risk profiles that are not necessarily concentrated on the most adverse \(1-\alpha\) quantile of scenarios.
 
-Another (non-coherent) risk measure that is often used in the insurance framework is Esscher's principle, as defined by~\cite{esschers-principle}. It is obtained by calculating the price premium of risk in a certain market model.
+Another (non-coherent) risk measure that is often used in the insurance framework is Esscher's principle, as defined by~\cite{A:bühlmann-1980}. It is obtained by calculating the price premium of risk in a certain market model.
 \begin{definition}[Esscher's principle]
    Given some \(\alpha > 0\), we define the Esscher principle premium of the loss \(L\) to be:
    \begin{equation*}
@@ -158,7 +159,7 @@ Another (non-coherent) risk measure that is often used in the insurance framewor
    \end{equation*}
 \end{definition}
 
-Finally, to enhance the scope of discussion, we consider a framework where we have some partial information, usually due to the passage of time, represented by some sub-\(\sigma\)-algebra \(\mathcal{G}\). This definition, treated in~\cite{dynamic}, allows us to consider dynamic risk measures that change over time as more information is revealed.
+Finally, to enhance the scope of discussion, we consider a framework where we have some partial information, usually due to the passage of time, represented by some sub-\(\sigma\)-algebra \(\mathcal{G}\). This definition, treated in~\cite{A:detlefsen-et-al-2005}, allows us to consider dynamic risk measures that change over time as more information is revealed.
 \begin{definition}[Conditional Risk Measure]
     Suppose \(\mathcal{G}\) is some sub-\(\sigma\)-algebra of \(\mathcal{F}\), representing partial information available at an earlier time. A conditional risk measure is some functional \(\rho\) whose values are \(\mathcal{G}\)-measurable random variables.
 \end{definition}
@@ -182,7 +183,7 @@ then:
 \end{equation*}
 and these bounds are sharp as well.
 
-These results generalize the results stated in the first part of~\cite{rom} in terms of the second moment, and validate the commonplace methods of the financial industry that often opt to publish the attachment probability, exhaustion probability, and expected loss rather than the full estimated probability distribution of the loss. At least in terms of moments and moment generating functions, these three values significantly restrict the possible loss distributions conforming to them, and can be regarded as a kind of financial information compression: these three numbers capture the essence of a distribution that is theoretically a much more complex object.
+These results generalize the results stated in the first part of~\cite{A:aviv-2018} in terms of the second moment, and validate the commonplace methods of the financial industry that often opt to publish the attachment probability, exhaustion probability, and expected loss rather than the full estimated probability distribution of the loss. At least in terms of moments and moment generating functions, these three values significantly restrict the possible loss distributions conforming to them, and can be regarded as a kind of financial information compression: these three numbers capture the essence of a distribution that is theoretically a much more complex object.
 
 \subsubsection{Sketch of Proof}
 Let \(s_{L}\) be the loss-exceedance function of \(L\). Let \(f\) be some strictly increasing function from \(\left[0,\,1\right]\) onto \(\left[0,\,1\right]\), such that in particular \(f \left(0\right) = 0\) and \(f \left(1\right) = 1\), and assume that \(f\) is convex.
@@ -190,7 +191,7 @@ We first note that by calculation:
 \begin{equation*}
     s_{f \left(L\right)} = s_{L} \circ f^{-1}.
 \end{equation*}
-Furthermore, since \(s_{L}\) is a loss-exceedance function, it has a particular form, illustrated in~\ref{fig1}. We represent \(s_{L}\) as:
+Furthermore, since \(s_{L}\) is a loss-exceedance function, it has a particular form, illustrated in figure~\ref{fig1}. We represent \(s_{L}\) as:
 \begin{equation*}
     s_{L} = \square_{L}  + \left(p-q\right) \widehat{\Delta_{L}}.
 \end{equation*}
@@ -216,10 +217,10 @@ r = \int_{0}^{1} \widehat{\Delta_{L}}.
 This is equivalent to the stated inequalities when we take \(f \left(x\right) = x^{n}\) or \(f \left(x\right) = \frac{\exp \left(tx\right) - 1}{\exp \left(t\right) - 1}\) for some \(t > 0\). We show sharpness by constructing explicit examples of loss variables that attain the bounds.
 
 \begin{figure}[tb]
-    \label{fig1}
     \centering
     \includegraphics[width=0.5\textwidth]{cdf.drawio.png}
     \caption{The general shape of a loss exceedance function may be split into a sum of a constant function and a reminder as \(\square + \Delta\) and we define \(\widehat{\Delta}\) as the normalized reminder \(\frac{\Delta}{p-q}\) where \(p = p_{\text{attachment}}\), \(q = p_{\text{exhaustion}}\)}
+    \label{fig1}
 \end{figure}
 
 \section{Research Objective}
@@ -229,7 +230,7 @@ Our aim is to supplement the abstract line of thinking with theoretical guarante
         \begin{enumerate}
             \item Suppose that in addition we are given \(\alpha \in \left(0,\,1\right)\), find strict upper and lower bounds for \(\text{VaR}_{\alpha}L\) that depend on \(p_{\text{attachment}}\), \(p_{\text{exhaustion}}\), \(\mathrm{E}L\), and \(\alpha\).
             \item Suppose that in addition we are given \(\alpha \in \left(0,\,1\right)\), find strict upper and lower bounds for \(\text{ES}_{\alpha}L\) that depend on \(p_{\text{attachment}}\), \(p_{\text{exhaustion}}\), \(\mathrm{E}L\), and \(\alpha\).
-            \item Suppose the in addition we are given a function \(\phi\) which is increasing, right-continuous, and non-negative on \(\left[0,\,1\right]\) with \(\int_{0}^{1} \phi \left(p\right)\mathrm{d}p = 1\), find strict upper and lower bounds for \(M_{\phi}\left(L\right)\) that depend on \(p_{\text{attachment}}\), \(p_{\text{exhaustion}}\), \(\mathrm{E}L\), and \(\phi\).
+            \item Suppose that in addition we are given a function \(\phi\) which is increasing, right-continuous, and non-negative on \(\left[0,\,1\right]\) with \(\int_{0}^{1} \phi \left(p\right)\mathrm{d}p = 1\), find strict upper and lower bounds for \(M_{\phi}\left(L\right)\) that depend on \(p_{\text{attachment}}\), \(p_{\text{exhaustion}}\), \(\mathrm{E}L\), and \(\phi\).
             \item Suppose that in addition we are given \(\alpha > 0\), find strict upper and lower bounds for \(\esscher_{\alpha}\left(L\right)\) that depend on \(p_{\text{attachment}}\), \(p_{\text{exhaustion}}\), \(\mathrm{E}L\), and \(\alpha\).
             
         \end{enumerate}
